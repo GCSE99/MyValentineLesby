@@ -121,15 +121,14 @@ body.opened{
 .heart{
     position:absolute;
     top:-30px;
-    left:50%;
-    transform:translateX(-50%) rotate(-45deg);
+    left:95px;
     width:30px;
     height:30px;
     background:red;
+    transform:rotate(-45deg);
     animation:pulse 1.2s infinite;
     box-shadow:0 0 20px red,0 0 40px pink;
 }
-
 
 .heart:before,
 .heart:after{
@@ -152,10 +151,8 @@ body.opened{
 /* 💖 CARTA */
 #card{
     position:absolute;
-    width:90vw;
-    max-width:420px;
-    min-height:300px;
-    height:auto;
+    width:420px;
+    height:300px;
     background:rgba(255,255,255,0.85);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.4);
@@ -221,71 +218,11 @@ body.opened{
 /* 📸 CONTENEDOR FOTO (AHORA NO ABSOLUTO SOBRE EL TEXTO) */
 .photo-side{
     position:absolute;
-    right:-170px;
+    right:-170px; /* se coloca fuera de la carta */
     top:40px;
     transform:rotate(8deg) scale(0);
     transition:1s ease;
 }
-
-/* 📱 RESPONSIVE */
-@media (max-width: 768px){
-
-    body{
-        height:auto;
-        min-height:100vh;
-        padding:20px;
-        overflow:auto;
-    }
-
-    #card{
-        position:relative;
-        transform:scale(0);
-        margin-top:20px;
-    }
-
-    #card.open{
-        transform:scale(1);
-    }
-
-    .photo-side{
-        position:relative;
-        right:0;
-        top:0;
-        margin:20px auto 0 auto;
-        transform:rotate(0deg) scale(0);
-        text-align:center;
-    }
-
-    #card.open .photo-side{
-        transform:rotate(0deg) scale(1);
-    }
-
-    .photo{
-        width:70%;
-        max-width:200px;
-        margin:auto;
-    }
-
-    .envelope{
-        width:180px;
-        height:115px;
-    }
-
-    .heart{
-        left:50%;
-        transform:translateX(-50%) rotate(-45deg);
-    }
-
-    #card h2{
-        font-size:32px;
-    }
-
-    #message{
-        font-size:14px;
-    }
-
-}
-
 
 /* Aparece cuando abre */
 #card.open .photo-side{
@@ -319,6 +256,61 @@ body.opened{
     border-radius:4px;
     box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
+
+/* ========================= */
+/* 📱 RESPONSIVE CELULARES */
+/* ========================= */
+
+@media (max-width: 768px){
+
+    body{
+        padding:20px;
+        overflow:auto;
+    }
+
+    /* Carta más pequeña */
+    #card{
+        width:95%;
+        max-width:380px;
+        height:auto;
+        padding:20px;
+    }
+
+    #card h2{
+        font-size:32px;
+    }
+
+    #message{
+        font-size:14px;
+    }
+
+    /* Foto deja de estar a un lado */
+    .photo-side{
+        position:relative;
+        right:auto;
+        top:auto;
+        margin-top:20px;
+        transform:rotate(5deg) scale(1);
+        display:flex;
+        justify-content:center;
+    }
+
+    .photo{
+        width:130px;
+    }
+
+    /* Sobre un poco más pequeño */
+    .envelope{
+        width:180px;
+        height:120px;
+    }
+
+    .heart{
+        left:75px;
+    }
+
+}
+
 
 
 </style>
@@ -432,5 +424,3 @@ function closeCard(){
 
 </body>
 </html>
-
-
