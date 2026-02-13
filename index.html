@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz San Valentín 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+}
+
+/* 🌸 Sobre */
+.valentines-day{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+}
+
+.envelope{
+    width:200px;
+    height:130px;
+    background:#ff4b6e;
+    position:relative;
+    border-radius:8px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.heart{
+    position:absolute;
+    top:-25px;
+    left:85px;
+    width:30px;
+    height:30px;
+    background:red;
+    transform:rotate(-45deg);
+    animation: pulse 1s infinite;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:30px;
+    height:30px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart:before{
+    top:-15px;
+    left:0;
+}
+
+.heart:after{
+    left:15px;
+    top:0;
+}
+
+.text{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:45px;
+    color:white;
+    font-weight:bold;
+}
+
+@keyframes pulse{
+    0%{transform:rotate(-45deg) scale(1);}
+    50%{transform:rotate(-45deg) scale(1.2);}
+    100%{transform:rotate(-45deg) scale(1);}
+}
+
+/* 💌 Carta */
+#card{
+    width:400px;
+    height:250px;
+    background:white;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%) scale(0);
+    border-radius:10px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    padding:20px;
+    transition:0.8s;
+}
+
+#card.open{
+    transform:translateY(-50%) scale(1);
+}
+
+#card h2{
+    text-align:center;
+    font-family:'Great Vibes',cursive;
+    font-size:32px;
+    color:#ff4b6e;
+}
+
+#card p{
+    font-size:14px;
+    text-align:center;
+}
+
+/* 💖 Corazones flotando */
+.floating-heart{
+    position:absolute;
+    color:red;
+    animation: floatUp 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(100vh) scale(0.5);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="valentines-day" onclick="openCard()">
+    <div class="envelope"></div>
+    <div class="heart"></div>
+    <div class="text">¡FELIZ DÍA DE<br>SAN VALENTÍN!</div>
+</div>
+
+<div id="card">
+    <h2>🌻🌻🌻</h2>
+    <p>Hola Corazón ^^</p>
+    <p>
+        En este San Valentín, quiero recordarte lo especial que eres.
+        Cada sonrisa compartida, cada momento juntos es un tesoro.
+        Gracias por ser quien eres. 🫶
+    </p>
+    <p><strong>Con cariño,<br>Gerson 💖</strong></p>
+</div>
+
+<!-- 🎵 Música -->
+<iframe 
+    id="music"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+</iframe>
+
+<script>
+function openCard(){
+
+    document.getElementById("card").classList.add("open");
+
+    // Activar música SOLO después del clic
+    let iframe = document.getElementById("music");
+    iframe.src = "https://www.youtube.com/embed/6jhBycgMVmw?autoplay=1&mute=0";
+
+    // Crear corazones flotando
+    for(let i=0;i<30;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML="❤";
+        heart.classList.add("floating-heart");
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+3)+"s";
+        heart.style.fontSize=(Math.random()*20+10)+"px";
+        document.body.appendChild(heart);
+    }
+
+    document.querySelector(".valentines-day").style.display="none";
+}
+</script>
+
+</body>
+</html>
 
