@@ -257,6 +257,76 @@ body.opened{
     box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
 
+/* ============================= */
+/* 📱 RESPONSIVE PARA CELULAR */
+/* ============================= */
+
+@media (max-width: 768px){
+
+    body{
+        overflow:auto; /* permite scroll si es necesario */
+        padding:20px;
+        height:auto;
+        min-height:100vh;
+    }
+
+    /* 💌 SOBRE más pequeño */
+    .envelope{
+        width:180px;
+        height:115px;
+    }
+
+    .heart{
+        left:75px;
+        width:25px;
+        height:25px;
+    }
+
+    .heart:before,
+    .heart:after{
+        width:25px;
+        height:25px;
+    }
+
+    /* 💖 CARTA adaptable */
+    #card{
+        position:relative;
+        width:95%;
+        max-width:350px;
+        height:auto;
+        padding:20px;
+    }
+
+    #card h2{
+        font-size:32px;
+    }
+
+    #message{
+        font-size:14px;
+    }
+
+    .signature{
+        font-size:24px;
+    }
+
+    /* 📸 FOTO ahora debajo de la carta */
+    .photo-side{
+        position:relative;
+        right:auto;
+        top:auto;
+        transform:none !important;
+        margin-top:20px;
+        display:flex;
+        justify-content:center;
+    }
+
+    .photo{
+        width:130px;
+    }
+
+}
+
+
 
 </style>
 </head>
