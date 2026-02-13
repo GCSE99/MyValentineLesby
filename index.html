@@ -1,51 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz San Valentín 💖</title>
+<title>Valentine 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+
 body{
     margin:0;
     height:100vh;
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
     font-family:'Poppins',sans-serif;
-    overflow:hidden;
+    background: radial-gradient(circle at top,#ffd1dc,#ff9a9e,#ff758c);
+    background-size:200% 200%;
+    animation:bgMove 12s ease infinite;
+    transition:1.5s;
 }
 
-/* 🌸 Sobre */
-.valentines-day{
+@keyframes bgMove{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
+}
+
+/* Glow ambiente */
+body.opened{
+    filter:brightness(1.1) saturate(1.2);
+}
+
+/* ✨ Partículas */
+.sparkle{
     position:absolute;
-    top:50%;
-    transform:translateY(-50%);
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    opacity:0.7;
+    animation:sparkleMove linear infinite;
+}
+
+@keyframes sparkleMove{
+    from{ transform:translateY(100vh); }
+    to{ transform:translateY(-10vh); }
+}
+
+/* 🦋 MARIPOSAS */
+.butterfly{
+    position:absolute;
+    font-size:22px;
+    animation:fly linear infinite;
+}
+
+@keyframes fly{
+    0%{ transform:translateY(100vh) translateX(0); opacity:1;}
+    100%{ transform:translateY(-10vh) translateX(50px); opacity:0;}
+}
+
+/* 💌 SOBRE */
+.valentines-day{
+    position:relative;
     cursor:pointer;
+    transition:0.5s;
+}
+
+.valentines-day:hover{
+    transform:scale(1.05);
 }
 
 .envelope{
-    width:200px;
-    height:130px;
+    width:220px;
+    height:140px;
     background:#ff4b6e;
     position:relative;
-    border-radius:8px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    border-radius:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    overflow:hidden;
+}
+
+.envelope-text{
+    position:absolute;
+    width:100%;
+    top:45px;
+    text-align:center;
+    font-size:13px;
+    color:white;
+    font-weight:500;
+    pointer-events:none;
+}
+
+.from{
+    opacity:0.8;
+}
+
+.to{
+    font-weight:bold;
+    font-size:15px;
+}
+
+
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff6b81;
+    clip-path:polygon(0 0,100% 0,50% 60%);
+    transform-origin:top;
+    transition:1s;
+}
+
+.valentines-day.open .flap{
+    transform:rotateX(180deg);
 }
 
 .heart{
     position:absolute;
-    top:-25px;
-    left:85px;
+    top:-30px;
+    left:95px;
     width:30px;
     height:30px;
     background:red;
     transform:rotate(-45deg);
-    animation: pulse 1s infinite;
+    animation:pulse 1.2s infinite;
+    box-shadow:0 0 20px red,0 0 40px pink;
 }
 
 .heart:before,
@@ -58,126 +140,181 @@ body{
     border-radius:50%;
 }
 
-.heart:before{
-    top:-15px;
-    left:0;
-}
-
-.heart:after{
-    left:15px;
-    top:0;
-}
-
-.text{
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:45px;
-    color:white;
-    font-weight:bold;
-}
+.heart:before{ top:-15px; }
+.heart:after{ left:15px; }
 
 @keyframes pulse{
-    0%{transform:rotate(-45deg) scale(1);}
-    50%{transform:rotate(-45deg) scale(1.2);}
-    100%{transform:rotate(-45deg) scale(1);}
+    0%,100%{ transform:rotate(-45deg) scale(1); }
+    50%{ transform:rotate(-45deg) scale(1.2); }
 }
 
-/* 💌 Carta */
+/* 💖 CARTA */
 #card{
-    width:400px;
-    height:250px;
-    background:white;
     position:absolute;
-    top:50%;
-    transform:translateY(-50%) scale(0);
-    border-radius:10px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.3);
-    padding:20px;
-    transition:0.8s;
+    width:420px;
+    height:300px;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius:15px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    padding:30px;
+    transform:scale(0);
+    transition:1s;
 }
 
 #card.open{
-    transform:translateY(-50%) scale(1);
+    transform:scale(1);
 }
 
 #card h2{
     text-align:center;
     font-family:'Great Vibes',cursive;
-    font-size:32px;
+    font-size:42px;
     color:#ff4b6e;
+    margin-bottom:10px;
 }
 
-#card p{
-    font-size:14px;
+#message{
     text-align:center;
+    font-size:15px;
+    min-height:120px;
 }
 
-/* 💖 Corazones flotando */
-.floating-heart{
+.signature{
+    text-align:center;
+    margin-top:15px;
+    font-family:'Great Vibes',cursive;
+    font-size:28px;
+    color:#ff4b6e;
+    animation:glowText 2s infinite alternate;
+}
+
+@keyframes glowText{
+    from{ text-shadow:0 0 5px #ff4b6e; }
+    to{ text-shadow:0 0 20px #ff1493; }
+}
+
+.close-btn{
+    margin-top:10px;
+    text-align:center;
+    cursor:pointer;
+    color:#ff4b6e;
+    font-weight:bold;
+}
+
+/* 💞 Flotantes */
+.floating{
     position:absolute;
-    color:red;
-    animation: floatUp 6s linear infinite;
-    opacity:0.7;
+    animation:floatUp linear infinite;
+    opacity:0.9;
 }
 
 @keyframes floatUp{
-    0%{
-        transform:translateY(100vh) scale(0.5);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-10vh) scale(1.2);
-        opacity:0;
-    }
+    from{ transform:translateY(100vh) scale(0.5); opacity:1;}
+    to{ transform:translateY(-10vh) scale(1.5); opacity:0;}
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="valentines-day" onclick="openCard()">
-    <div class="envelope"></div>
+<div class="valentines-day" onclick="openCard()" id="envelope">
+    <div class="envelope">
+        <div class="flap"></div>
+
+        <div class="envelope-text">
+            <div class="from">De: Gerson 💌</div>
+            <div class="to">Para: Lesby 🌻</div>
+        </div>
+
+    </div>
+
     <div class="heart"></div>
-    <div class="text">¡FELIZ DÍA DE<br>SAN VALENTÍN!</div>
 </div>
 
 <div id="card">
-    <h2>🌻🌻🌻</h2>
-    <p>Hola Corazón ^^</p>
-    <p>
-        En este San Valentín, quiero recordarte lo especial que eres.
-        Cada sonrisa compartida, cada momento juntos es un tesoro.
-        Gracias por ser quien eres. 🫶
-    </p>
-    <p><strong>Con cariño,<br>Gerson 💖</strong></p>
+    <h2>My Valentine 🌻</h2>
+    <div id="message"></div>
+    <div class="signature">Siempre tú 💌</div>
+    <div class="close-btn" onclick="closeCard()">Cerrar 💖</div>
 </div>
 
-<!-- 🎵 Música local -->
-<audio id="music" src="song.mp3"></audio>
+<audio id="music" src="song.mp3" loop></audio>
 
 <script>
+
+let audio=document.getElementById("music");
+
+const text=`Cada vez que escucho esta canción pienso en ti.
+Tu risa, tu suavidad, tu calidez.
+Haces que incluso los días ordinarios parezcan mágicos.
+Gracias por ser mi melodía favorita. 🎶💖`;
+
+let i=0;
+
+function typeWriter(){
+    if(i<text.length){
+        document.getElementById("message").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
+
+window.addEventListener("click",()=>{
+    audio.play();
+},{once:true});
+
 function openCard(){
 
+    document.getElementById("envelope").classList.add("open");
     document.getElementById("card").classList.add("open");
+    document.body.classList.add("opened");
 
-    // Reproducir música local
-    let audio = document.getElementById("music");
+    document.body.style.background=
+    "radial-gradient(circle at top,#2c003e,#6a0572,#a4508b)";
+
+    typeWriter();
     audio.play();
 
-    // Crear corazones flotando
-    for(let i=0;i<30;i++){
-        let heart = document.createElement("div");
-        heart.innerHTML="❤";
-        heart.classList.add("floating-heart");
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.animationDuration=(Math.random()*3+3)+"s";
-        heart.style.fontSize=(Math.random()*20+10)+"px";
-        document.body.appendChild(heart);
+    for(let i=0;i<40;i++){
+        createFloating("❤");
     }
 
-    document.querySelector(".valentines-day").style.display="none";
+    for(let i=0;i<20;i++){
+        createFloating("🌸");
+    }
+
+    for(let i=0;i<12;i++){
+        createFloating("🦋",true);
+    }
+
+    for(let i=0;i<50;i++){
+        let star=document.createElement("div");
+        star.classList.add("sparkle");
+        star.style.left=Math.random()*100+"vw";
+        star.style.animationDuration=(Math.random()*5+5)+"s";
+        document.body.appendChild(star);
+    }
 }
+
+function createFloating(symbol,butterfly=false){
+    let el=document.createElement("div");
+    el.innerHTML=symbol;
+    el.classList.add("floating");
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(Math.random()*25+15)+"px";
+    el.style.animationDuration=(Math.random()*6+4)+"s";
+    document.body.appendChild(el);
+}
+
+function closeCard(){
+    document.getElementById("envelope").classList.remove("open");
+    document.getElementById("card").classList.remove("open");
+    document.body.classList.remove("opened");
+}
+
 </script>
 
 </body>
