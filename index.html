@@ -215,6 +215,49 @@ body.opened{
     to{ transform:translateY(-10vh) scale(1.5); opacity:0;}
 }
 
+/* 📸 CONTENEDOR FOTO (AHORA NO ABSOLUTO SOBRE EL TEXTO) */
+.photo-side{
+    position:absolute;
+    right:-170px; /* se coloca fuera de la carta */
+    top:40px;
+    transform:rotate(8deg) scale(0);
+    transition:1s ease;
+}
+
+/* Aparece cuando abre */
+#card.open .photo-side{
+    transform:rotate(8deg) scale(1);
+}
+
+/* Estilo polaroid */
+.photo{
+    width:150px;
+    background:white;
+    padding:10px 10px 25px 10px;
+    border-radius:6px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+
+.photo img{
+    width:100%;
+    border-radius:4px;
+}
+
+/* Cinta */
+.tape{
+    position:absolute;
+    top:-15px;
+    left:45px;
+    width:60px;
+    height:25px;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(3px);
+    transform:rotate(-12deg);
+    border-radius:4px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+
 </style>
 </head>
 
@@ -235,9 +278,16 @@ body.opened{
 </div>
 
 <div id="card">
+    <div class="photo-side">
+        <div class="tape"></div>
+        <div class="photo">
+            <img src="fotofoto.png" alt="Nuestra foto 💖">
+        </div>
+    </div>
+
     <h2>My Valentine 🌻</h2>
     <div id="message"></div>
-    <div class="signature">Siempre tuyo, Gerson 💌</div>
+    <div class="signature">Siempre tuyo, Gerson.</div>
     <div class="close-btn" onclick="closeCard()">Cerrar 💖</div>
 </div>
 
@@ -319,4 +369,3 @@ function closeCard(){
 
 </body>
 </html>
-
